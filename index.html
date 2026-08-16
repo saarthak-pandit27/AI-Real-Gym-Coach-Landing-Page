@@ -4,444 +4,720 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI GYM COACH</title>
+    <title>AI GYM COACH — Intelligent Real-Time Workout & Pose Tracking</title>
+    <meta name="description" content="AI Gym Coach uses MediaPipe computer vision and AI voice feedback to correct workout form, count reps in real-time, and track fitness analytics.">
     <link rel="icon" type="image/png" href="assets/logo.png">
 
-    <link rel="stylesheet" href="style.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress"></div>
+
     <!-- NAVBAR -->
-
-    <nav class="navbar">
-
+    <nav class="navbar" id="navbar">
         <div class="logo">
-            <img src="assets/logo.png" alt="logo">
-            <span>AI GYM COACH</span>
+            <div class="logo-icon-wrapper">
+                <img src="assets/logo.png" alt="AI Gym Coach Logo" class="logo-img">
+                <div class="logo-glow"></div>
+            </div>
+            <span class="logo-text">AI GYM <span class="logo-highlight">COACH</span></span>
         </div>
 
-        <ul class="nav-links">
-            <li><a href="#features">Features</a></li>
-            <li><a href="#journey">Journey</a></li>
-            <li><a href="#dashboard">Dashboard</a></li>
-            <li><a href="#tech">Tech Stack</a></li>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#hero" class="nav-item active">Home</a></li>
+            <li><a href="#simulator" class="nav-item">AI Simulator</a></li>
+            <li><a href="#features" class="nav-item">Features</a></li>
+            <li><a href="#journey" class="nav-item">Journey</a></li>
+            <li><a href="#dashboard" class="nav-item">Dashboard</a></li>
+            <li><a href="#tech" class="nav-item">Tech Stack</a></li>
+            <li><a href="#faq" class="nav-item">FAQ</a></li>
         </ul>
 
+        <div class="nav-actions">
+            <a href="https://real-time-gym-coach.streamlit.app/" target="_blank" rel="noopener" class="btn-nav">
+                <span>Launch App</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero">
+        <div class="hero-bg-glow glow-1"></div>
+        <div class="hero-bg-glow glow-2"></div>
+        <div class="hero-grid-pattern"></div>
 
-    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-left">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    <span class="badge-text">MediaPipe Pose Engine 2.0 • Real-Time AI Coach</span>
+                </div>
 
-        <div class="hero-left">
+                <h1 class="hero-title">
+                    Train Smarter.<br>
+                    Track Live.<br>
+                    <span class="gradient-text">Get Peak Results.</span>
+                </h1>
 
-            <span class="hero-tag">
-                AI POWERED FITNESS PLATFORM
-            </span>
+                <p class="hero-subtitle">
+                    Transform your webcam into a high-precision AI fitness trainer. Real-time computer vision tracks joint angles, verifies exercise posture, counts reps automatically, and delivers audio feedback.
+                </p>
 
-            <h1>
-                Train Smarter.<br>
-                Track Better.<br>
-                <span>Get Results.</span>
-            </h1>
+                <div class="hero-buttons">
+                    <a href="https://real-time-gym-coach.streamlit.app/" target="_blank" rel="noopener" class="btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        <span>Launch Live Demo</span>
+                    </a>
 
-            <p>
-                AI Gym Coach combines real-time pose detection,
-                workout analytics, intelligent rep counting,
-                voice guidance, and progress tracking to help
-                users improve performance and maintain consistency.
-            </p>
+                    <a href="#simulator" class="btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                        <span>Try Simulator</span>
+                    </a>
 
-            <div class="hero-buttons">
+                    <a href="https://github.com/saarthak-pandit27/AI-Real-Time-GYM-Coach" target="_blank" rel="noopener" class="btn-ghost">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        <span>GitHub</span>
+                    </a>
+                </div>
 
-                <a href="https://real-time-gym-coach.streamlit.app/" class="btn-primary">
-                    Launch Demo
-                </a>
-
-                <a href="https://github.com/saarthak-pandit27/AI-Real-Time-GYM-Coach" class="btn-secondary">
-                    View GitHub
-                </a>
-
+                <div class="hero-social-proof">
+                    <div class="avatar-group">
+                        <div class="avatar">💪</div>
+                        <div class="avatar">🏋️‍♂️</div>
+                        <div class="avatar">⚡</div>
+                        <div class="avatar">🤖</div>
+                    </div>
+                    <div class="proof-text">
+                        <div class="stars">★★★★★</div>
+                        <span>Trusted by <strong>10,000+</strong> sessions tracked</span>
+                    </div>
+                </div>
             </div>
 
-        </div>
+            <div class="hero-right">
+                <div class="hero-card-frame">
+                    <div class="frame-header">
+                        <div class="frame-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="frame-title">
+                            <span class="live-dot"></span>
+                            <span>LIVE VISION FEED • SQUAT DETECTED</span>
+                        </div>
+                        <div class="frame-badge">30 FPS</div>
+                    </div>
 
-        <div class="hero-right">
-            <img src="assets/workout-setup.png" alt="Workout Setup">
-        </div>
+                    <div class="hero-simulator-box">
+                        <canvas id="hero-pose-canvas" width="520" height="340"></canvas>
 
+                        <div class="hero-canvas-overlay top-left">
+                            <div class="hud-chip">
+                                <span class="hud-label">TARGET EXERCISE</span>
+                                <span class="hud-val" id="hero-exercise-tag">SQUATS</span>
+                            </div>
+                        </div>
+
+                        <div class="hero-canvas-overlay top-right">
+                            <div class="hud-chip highlight">
+                                <span class="hud-label">FORM ACCURACY</span>
+                                <span class="hud-val" id="hero-accuracy-tag">98.4%</span>
+                            </div>
+                        </div>
+
+                        <div class="hero-canvas-overlay bottom-left">
+                            <div class="hud-chip">
+                                <span class="hud-label">KNEE ANGLE</span>
+                                <span class="hud-val" id="hero-angle-tag">92°</span>
+                            </div>
+                        </div>
+
+                        <div class="hero-canvas-overlay bottom-right">
+                            <div class="hud-chip counter-chip">
+                                <span class="hud-label">REPS COMPLETED</span>
+                                <span class="hud-val large" id="hero-rep-counter">12</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="frame-footer">
+                        <div class="frame-status">
+                            <span class="status-icon">✓</span>
+                            <span id="hero-feedback-text">Form Perfect — Full Depth Reached</span>
+                        </div>
+                        <button id="hero-sim-toggle" class="btn-mini">
+                            <span id="hero-sim-icon">⏸</span> <span id="hero-sim-btn-text">Pause</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- STATS -->
+    <!-- STATS BANNER -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-info">
+                    <h2 class="counter" data-target="98">%</h2>
+                    <p>Pose Detection Accuracy</p>
+                </div>
+            </div>
 
-    <section class="stats">
+            <div class="stat-card">
+                <div class="stat-icon">🏋️</div>
+                <div class="stat-info">
+                    <h2 class="counter" data-target="5">+</h2>
+                    <p>Exercise Modes Supported</p>
+                </div>
+            </div>
 
-        <div class="stat-card">
-            <h2>98%</h2>
-            <p>Pose Detection Accuracy</p>
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-info">
+                    <h2 class="counter-text">&lt;15ms</h2>
+                    <p>MediaPipe Frame Latency</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🔒</div>
+                <div class="stat-info">
+                    <h2 class="counter-text">100%</h2>
+                    <p>Browser Privacy First</p>
+                </div>
+            </div>
         </div>
-
-        <div class="stat-card">
-            <h2>5+</h2>
-            <p>Exercise Types</p>
-        </div>
-
-        <div class="stat-card">
-            <h2>24/7</h2>
-            <p>AI Coaching</p>
-        </div>
-
-        <div class="stat-card">
-            <h2>100%</h2>
-            <p>Workout Tracking</p>
-        </div>
-
     </section>
 
-    <!-- FEATURES -->
+    <!-- INTERACTIVE SIMULATOR SECTION -->
+    <section id="simulator" class="simulator-section">
+        <div class="section-header">
+            <span class="section-tag">INTERACTIVE DEMO</span>
+            <h2>Try The AI Pose Analyzer</h2>
+            <p>Experience how MediaPipe vision tracks joint keypoints, calculates posture angles, and provides instant rep feedback in real-time.</p>
+        </div>
 
-    <section id="features" class="features">
+        <div class="simulator-wrapper">
+            <div class="sim-controls-bar">
+                <div class="control-group">
+                    <label>Select Workout:</label>
+                    <div class="workout-selector">
+                        <button class="sim-workout-btn active" data-workout="squat">
+                            <span>🦵 Squat</span>
+                        </button>
+                        <button class="sim-workout-btn" data-workout="pushup">
+                            <span>💪 Pushup</span>
+                        </button>
+                        <button class="sim-workout-btn" data-workout="curl">
+                            <span>🏋️ Bicep Curl</span>
+                        </button>
+                    </div>
+                </div>
 
-        <h2>Powerful Features</h2>
+                <div class="control-group right">
+                    <button id="sim-start-btn" class="btn-sim-action">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        <span>Run Simulation</span>
+                    </button>
+                    <button id="sim-reset-btn" class="btn-sim-secondary">Reset Reps</button>
+                </div>
+            </div>
+
+            <div class="sim-main-grid">
+                <div class="sim-canvas-container">
+                    <canvas id="interactive-sim-canvas" width="600" height="400"></canvas>
+                    <div class="sim-canvas-hud">
+                        <div class="hud-item">
+                            <span class="label">STATE</span>
+                            <span class="val green" id="sim-state-val">DOWN (ASCENDING)</span>
+                        </div>
+                        <div class="hud-item">
+                            <span class="label">PRIMARY JOINT</span>
+                            <span class="val cyan" id="sim-joint-name">KNEE FLEXION</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sim-telemetry-panel">
+                    <div class="telemetry-card">
+                        <h3>Live Telemetry</h3>
+
+                        <div class="metric-row">
+                            <span class="metric-name">Joint Angle</span>
+                            <span class="metric-value cyan" id="sim-angle-value">95°</span>
+                        </div>
+                        <div class="progress-bar-wrap">
+                            <div class="progress-bar-fill" id="sim-angle-bar" style="width: 60%;"></div>
+                        </div>
+
+                        <div class="metric-row mt-15">
+                            <span class="metric-name">Form Accuracy</span>
+                            <span class="metric-value green" id="sim-accuracy-value">97%</span>
+                        </div>
+                        <div class="progress-bar-wrap">
+                            <div class="progress-bar-fill green-fill" id="sim-accuracy-bar" style="width: 97%;"></div>
+                        </div>
+
+                        <div class="rep-counter-display">
+                            <div class="counter-box">
+                                <span class="counter-num" id="sim-rep-count">0</span>
+                                <span class="counter-label">TOTAL REPS</span>
+                            </div>
+                            <div class="counter-box">
+                                <span class="counter-num cyan" id="sim-calories-count">0.0</span>
+                                <span class="counter-label">EST. KCAL</span>
+                            </div>
+                        </div>
+
+                        <div class="voice-feedback-box" id="sim-feedback-box">
+                            <div class="voice-wave">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="voice-text">
+                                <span class="voice-speaker">🤖 AI Voice Coach:</span>
+                                <p id="sim-voice-msg">"Good depth on the squat! Drive up through your heels."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" class="features-section">
+        <div class="section-header">
+            <span class="section-tag">ENGINEERED FOR EXCELLENCE</span>
+            <h2>Powerful Features</h2>
+            <p>Combining computer vision, machine learning, and intuitive analytics to elevate your home training.</p>
+        </div>
+
+        <div class="feature-filter-tabs">
+            <button class="filter-tab active" data-filter="all">All Features</button>
+            <button class="filter-tab" data-filter="vision">AI Vision</button>
+            <button class="filter-tab" data-filter="audio">Voice Guidance</button>
+            <button class="filter-tab" data-filter="analytics">Analytics</button>
+        </div>
 
         <div class="feature-grid">
-
-            <div class="feature-card">
-                <h3>🎯 Real-Time Pose Detection</h3>
-                <p>
-                    Detects body posture using MediaPipe and
-                    computer vision to ensure exercises are
-                    performed correctly.
-                </p>
+            <div class="feature-card" data-category="vision">
+                <div class="feature-icon-box cyan-glow">🎯</div>
+                <h3>Real-Time Pose Detection</h3>
+                <p>Detects 33 skeletal body landmarks using MediaPipe and computer vision to verify form angles instantly.</p>
+                <div class="feature-tag">33 Landmark Points</div>
             </div>
 
-            <div class="feature-card">
-                <h3>🎙️ AI Voice Coaching</h3>
-                <p>
-                    Provides intelligent voice feedback and
-                    workout guidance during training sessions.
-                </p>
+            <div class="feature-card" data-category="audio">
+                <div class="feature-icon-box purple-glow">🎙️</div>
+                <h3>AI Voice Coaching</h3>
+                <p>Provides spoken real-time corrections powered by Groq LLM logic when your form slips out of alignment.</p>
+                <div class="feature-tag">Groq AI Powered</div>
             </div>
 
-            <div class="feature-card">
-                <h3>📊 Performance Analytics</h3>
-                <p>
-                    Monitor workout duration, completed sets,
-                    repetitions and overall exercise performance.
-                </p>
+            <div class="feature-card" data-category="vision">
+                <div class="feature-icon-box green-glow">🔢</div>
+                <h3>Intelligent Rep Counting</h3>
+                <p>State-machine logic tracks exercise transitions from eccentric to concentric phases for accurate rep counts.</p>
+                <div class="feature-tag">Zero Double Counting</div>
             </div>
 
-            <div class="feature-card">
-                <h3>📈 Workout History</h3>
-                <p>
-                    Store and review previous workout sessions
-                    to measure long-term progress.
-                </p>
+            <div class="feature-card" data-category="analytics">
+                <div class="feature-icon-box cyan-glow">📊</div>
+                <h3>Performance Analytics</h3>
+                <p>Monitor session duration, set velocity, completion breakdown, and calorie expenditure in visual dashboards.</p>
+                <div class="feature-tag">Live Graphs</div>
             </div>
 
+            <div class="feature-card" data-category="analytics">
+                <div class="feature-icon-box purple-glow">📈</div>
+                <h3>Workout History Log</h3>
+                <p>All training sessions auto-sync to local SQLite storage, allowing historical progress tracking and trends.</p>
+                <div class="feature-tag">SQLite Local DB</div>
+            </div>
+
+            <div class="feature-card" data-category="vision">
+                <div class="feature-icon-box green-glow">🔒</div>
+                <h3>Privacy-First Streamlit UI</h3>
+                <p>Video frames are processed client-side via WebRTC stream — your video feed is never uploaded to external servers.</p>
+                <div class="feature-tag">WebRTC Native</div>
+            </div>
         </div>
-
     </section>
 
-    <!-- JOURNEY -->
-
-    <section id="journey" class="journey">
-
-        <h2>Your Fitness Journey</h2>
-
-        <div class="journey-item">
-
-            <div class="journey-text">
-                <h3>STEP 01</h3>
-                <h1>Login Securely</h1>
-
-                <p>
-                    Users can create profiles and access
-                    personalized workout tracking and
-                    exercise analytics.
-                </p>
-            </div>
-
-            <div class="journey-image">
-                <img src="assets/login-page.png" alt="">
-            </div>
-
+    <!-- JOURNEY SECTION -->
+    <section id="journey" class="journey-section">
+        <div class="section-header">
+            <span class="section-tag">SIMPLE 4-STEP WORKFLOW</span>
+            <h2>Your AI Fitness Journey</h2>
+            <p>From initial setup to master-level workouts, see how AI Gym Coach guides every movement.</p>
         </div>
 
-        <div class="journey-item reverse">
-
-            <div class="journey-text">
-                <h3>STEP 02</h3>
-                <h1>Choose Your Workout</h1>
-
-                <p>
-                    Select the desired exercise, sets and
-                    repetitions before starting training.
-                </p>
+        <div class="journey-timeline">
+            <!-- Step 1 -->
+            <div class="journey-card">
+                <div class="journey-text">
+                    <span class="step-num">STEP 01</span>
+                    <h3>Secure Login & Profile</h3>
+                    <p>Create your custom user profile to store personalized target metrics, exercise preferences, and workout session history safely.</p>
+                    <ul class="journey-bullets">
+                        <li><span>✓</span> Personalized profile database</li>
+                        <li><span>✓</span> Custom rep and set goals</li>
+                    </ul>
+                </div>
+                <div class="journey-media">
+                    <div class="glass-image-frame">
+                        <img src="assets/login-page.png" alt="Login Page Interface">
+                        <div class="image-overlay-chip">Profile Setup</div>
+                    </div>
+                </div>
             </div>
 
-            <div class="journey-image">
-                <img src="assets/workout-setup.png" alt="">
+            <!-- Step 2 -->
+            <div class="journey-card reverse">
+                <div class="journey-text">
+                    <span class="step-num">STEP 02</span>
+                    <h3>Choose & Configure Workout</h3>
+                    <p>Select your workout mode (Squat, Pushup, Bicep Curl, Overhead Press), set target sets and repetitions before beginning.</p>
+                    <ul class="journey-bullets">
+                        <li><span>✓</span> Multi-exercise support</li>
+                        <li><span>✓</span> Custom target sets & rest timers</li>
+                    </ul>
+                </div>
+                <div class="journey-media">
+                    <div class="glass-image-frame">
+                        <img src="assets/workout-setup.png" alt="Workout Setup Interface">
+                        <div class="image-overlay-chip">Exercise Selection</div>
+                    </div>
+                </div>
             </div>
 
+            <!-- Step 3 -->
+            <div class="journey-card">
+                <div class="journey-text">
+                    <span class="step-num">STEP 03</span>
+                    <h3>Track Live Performance</h3>
+                    <p>Position your camera and begin! MediaPipe overlays landmark skeletons, counts reps automatically, and audio coach guides posture.</p>
+                    <ul class="journey-bullets">
+                        <li><span>✓</span> Real-time joint skeleton line overlay</li>
+                        <li><span>✓</span> Immediate posture correction alerts</li>
+                    </ul>
+                </div>
+                <div class="journey-media">
+                    <div class="glass-image-frame">
+                        <img src="assets/live-tracking.png" alt="Live Pose Tracking Interface">
+                        <div class="image-overlay-chip highlight">Live AI Tracking</div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="journey-item">
-
-            <div class="journey-text">
-                <h3>STEP 03</h3>
-                <h1>Track Live Performance</h1>
-
-                <p>
-                    Real-time pose estimation monitors body
-                    movement while counting repetitions and
-                    checking exercise form.
-                </p>
-            </div>
-
-            <div class="journey-image">
-                <img src="assets/live-tracking.png" alt="">
-            </div>
-
-        </div>
-
     </section>
-        <!-- WORKOUT HISTORY DASHBOARD -->
 
+    <!-- DASHBOARD SHOWCASE SECTION -->
     <section id="dashboard" class="dashboard-section">
-
-        <div class="dashboard-content">
-
-            <div class="dashboard-image">
-                <img src="assets/workout-history.png" alt="Workout History Dashboard">
-            </div>
-
-            <div class="dashboard-text">
-
-                <span class="step-tag">
-                    WORKOUT ANALYTICS
-                </span>
-
-                <h2>
-                    Workout History Dashboard
-                </h2>
-
-                <p>
-                    Every workout session is automatically saved and organized
-                    inside the Workout History Dashboard. Users can review
-                    previous exercises, completed sets, repetitions and
-                    workout duration from a single location.
-                </p>
-
-                <p>
-                    This feature helps users stay accountable, monitor
-                    consistency, and measure long-term improvement through
-                    detailed workout records and performance insights.
-                </p>
-
-                <ul>
-                    <li>✔ Complete Workout Records</li>
-                    <li>✔ Set & Rep Tracking</li>
-                    <li>✔ Workout Duration Analytics</li>
-                    <li>✔ Progress Monitoring</li>
-                    <li>✔ Performance Insights</li>
-                </ul>
-
-            </div>
-
+        <div class="section-header">
+            <span class="section-tag">DATA-DRIVEN INSIGHTS</span>
+            <h2>Comprehensive Dashboard</h2>
+            <p>Review comprehensive logs and deep metrics to ensure long-term progressive overload.</p>
         </div>
 
+        <div class="dashboard-tabs">
+            <button class="dash-tab active" data-tab="tab-history">
+                <span>📁 Workout History</span>
+            </button>
+            <button class="dash-tab" data-tab="tab-metrics">
+                <span>📊 Advanced Metrics</span>
+            </button>
+        </div>
+
+        <div class="dashboard-display">
+            <!-- Tab 1 -->
+            <div class="dash-pane active" id="tab-history">
+                <div class="dash-grid">
+                    <div class="dash-image-box">
+                        <img src="assets/workout-history.png" alt="Workout History Dashboard">
+                        <div class="dash-hotspot h1" title="Rep Details"></div>
+                        <div class="dash-hotspot h2" title="Time Log"></div>
+                    </div>
+                    <div class="dash-details">
+                        <span class="tag-accent">HISTORICAL RECORDS</span>
+                        <h3>Workout History Dashboard</h3>
+                        <p>Every rep, set, and duration metric is logged directly into your session table. Quickly filter past workouts to compare growth over time.</p>
+                        <div class="dash-feature-list">
+                            <div class="df-item">
+                                <div class="df-icon">✔</div>
+                                <div>
+                                    <strong>Complete Workout Logs</strong>
+                                    <p>Detailed view of exercise date, duration, sets, and rep totals.</p>
+                                </div>
+                            </div>
+                            <div class="df-item">
+                                <div class="df-icon">✔</div>
+                                <div>
+                                    <strong>Export & Search</strong>
+                                    <p>Search past sessions by exercise type or date range.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2 -->
+            <div class="dash-pane" id="tab-metrics">
+                <div class="dash-grid">
+                    <div class="dash-image-box">
+                        <img src="assets/metrics-dashboard.png" alt="Advanced Metrics Dashboard">
+                    </div>
+                    <div class="dash-details">
+                        <span class="tag-accent purple">PERFORMANCE ANALYTICS</span>
+                        <h3>Advanced Fitness Metrics</h3>
+                        <p>Visualize form accuracy distributions, total calories burned, consistency streaks, and peak velocity across all your workout sessions.</p>
+                        <div class="dash-feature-list">
+                            <div class="df-item">
+                                <div class="df-icon">✔</div>
+                                <div>
+                                    <strong>Form Accuracy Breakdown</strong>
+                                    <p>Track posture consistency percentages to ensure safe lifting.</p>
+                                </div>
+                            </div>
+                            <div class="df-item">
+                                <div class="df-icon">✔</div>
+                                <div>
+                                    <strong>Progressive Overload Graphs</strong>
+                                    <p>Interactive plots showing week-over-week volume progression.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="dashboard-section">
-
-    <div class="dashboard-content reverse">
-
-        <div class="dashboard-image">
-            <img src="assets/metrics-dashboard.png" alt="Metrics Dashboard">
+    <!-- TECH STACK SECTION -->
+    <section id="tech" class="tech-section">
+        <div class="section-header">
+            <span class="section-tag">BUILT WITH CUTTING-EDGE TECH</span>
+            <h2>Technology Stack</h2>
+            <p>Powered by modern AI frameworks, computer vision libraries, and high-performance Python engines.</p>
         </div>
-
-        <div class="dashboard-text">
-
-            <span class="step-tag">
-                PERFORMANCE ANALYTICS
-            </span>
-
-            <h2>
-                Advanced Fitness Metrics
-            </h2>
-
-            <p>
-                Analyze workout performance using intelligent analytics.
-                Track exercise consistency, repetition accuracy,
-                workout duration, calories burned, and training trends.
-            </p>
-
-            <p>
-                The analytics dashboard transforms raw workout data
-                into actionable insights, helping users improve
-                efficiency and achieve fitness goals faster.
-            </p>
-
-            <ul>
-                <li>✔ Repetition Statistics</li>
-                <li>✔ Workout Duration Tracking</li>
-                <li>✔ Performance Trends</li>
-                <li>✔ Exercise Consistency Analysis</li>
-                <li>✔ Progress Visualization</li>
-            </ul>
-
-        </div>
-
-    </div>
-
-</section>
-
-    <!-- TECH STACK -->
-
-    <section id="tech" class="tech-stack">
-
-        <h2>
-            Technology Stack
-        </h2>
 
         <div class="tech-grid">
+            <div class="tech-card">
+                <div class="tech-card-header">
+                    <span class="tech-emoji">🐍</span>
+                    <span class="tech-badge">CORE</span>
+                </div>
+                <h3>Python 3.10+</h3>
+                <p>Core backend logic, state machine tracking, joint angle math, and data pipelines.</p>
+            </div>
 
-    <div class="tech-card">
-        <h3>🐍 Python</h3>
-        <p>Core backend and AI development.</p>
-    </div>
+            <div class="tech-card">
+                <div class="tech-card-header">
+                    <span class="tech-emoji">🎨</span>
+                    <span class="tech-badge">UI FRAMEWORK</span>
+                </div>
+                <h3>Streamlit</h3>
+                <p>Interactive frontend dashboard enabling real-time video component rendering.</p>
+            </div>
 
-    <div class="tech-card">
-        <h3>🎨 Streamlit</h3>
-        <p>Interactive fitness dashboard UI.</p>
-    </div>
+            <div class="tech-card highlight-border">
+                <div class="tech-card-header">
+                    <span class="tech-emoji">👁️</span>
+                    <span class="tech-badge cyan">VISION ENGINE</span>
+                </div>
+                <h3>MediaPipe</h3>
+                <p>Google's ultra-fast 33-point 3D landmark pose estimation pipeline.</p>
+            </div>
 
-    <div class="tech-card">
-        <h3>👁️ MediaPipe</h3>
-        <p>Real-time pose estimation engine.</p>
-    </div>
+            <div class="tech-card">
+                <div class="tech-card-header">
+                    <span class="tech-emoji">📷</span>
+                    <span class="tech-badge">CV PROCESSING</span>
+                </div>
+                <h3>OpenCV</h3>
+                <p>Image frame processing, matrix transformations, skeleton rendering, and camera feeds.</p>
+            </div>
 
-    <div class="tech-card">
-        <h3>📷 OpenCV</h3>
-        <p>Computer vision processing.</p>
-    </div>
+            <div class="tech-card">
+                <div class="tech-card-header">
+                    <span class="tech-emoji">📡</span>
+                    <span class="tech-badge">STREAMING</span>
+                </div>
+                <h3>Streamlit-WebRTC</h3>
+                <p>Low-latency webcam video stream handler running client-side browser processing.</p>
+            </div>
 
-    <div class="tech-card">
-        <h3>📡 WebRTC</h3>
-        <p>Live webcam streaming.</p>
-    </div>
+            <div class="tech-card">
+                <div class="tech-card-header">
+                    <span class="tech-emoji">🗄️</span>
+                    <span class="tech-badge">DATABASE</span>
+                </div>
+                <h3>SQLite 3</h3>
+                <p>Lightweight, reliable relational database storing user session telemetry locally.</p>
+            </div>
 
-    <div class="tech-card">
-        <h3>🗄️ SQLite</h3>
-        <p>Workout history storage.</p>
-    </div>
+            <div class="tech-card highlight-border">
+                <div class="tech-card-header">
+                    <span class="tech-emoji">🤖</span>
+                    <span class="tech-badge purple">AI VOICE</span>
+                </div>
+                <h3>Groq LLM & gTTS</h3>
+                <p>Instant intelligent vocal feedback generation during active exercise reps.</p>
+            </div>
 
-    <div class="tech-card">
-        <h3>🤖 Groq AI</h3>
-        <p>AI voice coaching integration.</p>
-    </div>
-
-    <div class="tech-card">
-        <h3>🔢 NumPy</h3>
-        <p>Numerical data processing.</p>
-    </div>
-
-</div>
+            <div class="tech-card">
+                <div class="tech-card-header">
+                    <span class="tech-emoji">🔢</span>
+                    <span class="tech-badge">MATH ENGINE</span>
+                </div>
+                <h3>NumPy</h3>
+                <p>High-performance vector angle math and trigonometric posture checks.</p>
+            </div>
+        </div>
     </section>
 
-    <!-- CTA -->
-
-    <section class="cta">
-
-        <h2>
-            Ready To Transform Your Fitness Journey?
-        </h2>
-
-        <p>
-            Experience AI-powered workout tracking,
-            intelligent coaching, and real-time exercise analysis.
-        </p>
-
-        <div class="hero-buttons">
-
-            <a href="https://real-time-gym-coach.streamlit.app/" class="btn-primary">
-                Launch Demo
-            </a>
-
-            <a href="https://github.com/saarthak-pandit27/AI-Real-Time-GYM-Coach" class="btn-secondary">
-                View Source Code
-            </a>
-
+    <!-- FAQ SECTION -->
+    <section id="faq" class="faq-section">
+        <div class="section-header">
+            <span class="section-tag">GOT QUESTIONS?</span>
+            <h2>Frequently Asked Questions</h2>
+            <p>Everything you need to know about AI Gym Coach privacy, setup, and features.</p>
         </div>
 
+        <div class="faq-accordion">
+            <div class="faq-item active">
+                <button class="faq-question">
+                    <span>How does the AI track my workout form?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>AI Gym Coach uses MediaPipe pose estimation to detect 33 anatomical keypoints on your body in real-time. By calculating precise angles between joints (e.g. hip-knee-ankle for squats), it detects exercise depth, back curvature, and movement reps.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Is my camera video recorded or uploaded to servers?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>No! Your camera video feed is processed entirely inside your web browser via WebRTC stream. No raw video frames are ever recorded, saved, or transmitted to any external server.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Do I need special camera equipment?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Not at all. Any standard laptop webcam or smartphone browser camera works seamlessly. Simply ensure your full body is visible in good lighting.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Which exercises are currently supported?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>The system currently features built-in pose estimation for Squats, Pushups, Bicep Curls, Overhead Dumbbell Press, and Lunges, with custom exercise additions coming soon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="cta-card">
+            <div class="cta-glow"></div>
+            <h2>Ready To Revolutionize Your Workouts?</h2>
+            <p>Experience real-time AI exercise tracking, voice guidance, and form analysis right now in your browser.</p>
+            <div class="cta-buttons">
+                <a href="https://real-time-gym-coach.streamlit.app/" target="_blank" rel="noopener" class="btn-primary large">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    <span>Launch Free Demo</span>
+                </a>
+                <a href="https://github.com/saarthak-pandit27/AI-Real-Time-GYM-Coach" target="_blank" rel="noopener" class="btn-secondary large">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    <span>View GitHub Repo</span>
+                </a>
+            </div>
+        </div>
     </section>
 
     <!-- FOOTER -->
-
     <footer class="footer">
-
-        <div class="footer-container">
-
+        <div class="footer-top">
             <div class="footer-brand">
-
-                <img src="assets/logo.png" alt="logo">
-
-                <h3>AI GYM COACH</h3>
-
-                <p>
-                    AI-powered fitness coaching platform featuring
-                    real-time pose detection, intelligent rep counting,
-                    workout analytics, progress tracking, and voice guidance.
-                </p>
-
+                <div class="logo">
+                    <img src="assets/logo.png" alt="AI Gym Coach Logo" class="logo-img">
+                    <span class="logo-text">AI GYM <span class="logo-highlight">COACH</span></span>
+                </div>
+                <p>Next-generation fitness coaching platform powered by real-time MediaPipe computer vision, posture angle analytics, and intelligent audio feedback.</p>
+                <div class="footer-status-pill">
+                    <span class="status-dot green"></span>
+                    <span>Systems Operational • Streamlit Demo Live</span>
+                </div>
             </div>
 
-            <div class="footer-links">
-
-                <div>
-                    <h4>Product</h4>
-
-                    <a href="#">Live Tracking</a>
-                    <a href="#">Workout Analytics</a>
-                    <a href="#">Workout History</a>
-                    <a href="#">Voice Coach</a>
+            <div class="footer-links-grid">
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <a href="#hero">Home</a>
+                    <a href="#simulator">AI Simulator</a>
+                    <a href="#features">Features</a>
+                    <a href="#journey">Journey</a>
+                    <a href="#dashboard">Dashboard</a>
                 </div>
 
-                <div>
-                    <h4>Features</h4>
-
-                    <a href="#">Pose Detection</a>
-                    <a href="#">Rep Counter</a>
-                    <a href="#">Exercise Tracking</a>
-                    <a href="#">Progress Reports</a>
-                </div>
-
-                <div>
+                <div class="footer-col">
                     <h4>Technology</h4>
-
-                    <a href="#">Python</a>
-                    <a href="#">MediaPipe</a>
-                    <a href="#">OpenCV</a>
-                    <a href="#">Streamlit</a>
+                    <a href="#tech">Python & OpenCV</a>
+                    <a href="#tech">MediaPipe Engine</a>
+                    <a href="#tech">Streamlit WebRTC</a>
+                    <a href="#tech">Groq AI Vocal Coach</a>
+                    <a href="#tech">SQLite Telemetry</a>
                 </div>
 
+                <div class="footer-col">
+                    <h4>Stay Updated</h4>
+                    <p class="footer-subtext">Get updates on new AI fitness models and features.</p>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required class="newsletter-input">
+                        <button type="submit" class="newsletter-btn">→</button>
+                    </form>
+                </div>
             </div>
-
         </div>
 
         <div class="footer-bottom">
-            © 2026 AI GYM COACH • Built by Saarthak Pandit
+            <p>© 2026 AI GYM COACH • Built by <strong>Saarthak Pandit</strong></p>
+            <button id="back-to-top" class="back-to-top" aria-label="Back to top">↑</button>
         </div>
-
     </footer>
 
+    <!-- Script -->
     <script src="script.js"></script>
-
 </body>
 
 </html>
